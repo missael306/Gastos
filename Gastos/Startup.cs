@@ -12,6 +12,7 @@ using Gastos.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Gastos.Models;
 
 namespace Gastos
 {
@@ -27,11 +28,11 @@ namespace Gastos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            string connectionString = ConfigurationExtensions.GetConnectionString(this.Configuration, "DefaultConnection");
+            services.AddDbContext<GastosContext>(options => options.UseSqlServer(connectionString));
+           
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<GastosContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
