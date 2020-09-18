@@ -1,0 +1,251 @@
+﻿/*----------- Bootstrap -----------*/
+.img-thumbnail {
+    background-color: transparent;
+    border: none;
+}
+
+.modal {
+    color: var(--second-font);
+}
+
+.modal-header-witout-border {
+    border: none;
+}
+
+    .modal-header-witout-border button {
+        margin: .6rem .6rem 0;
+    }
+
+.jconfirm-box {
+    color: black;
+}
+
+.table th.border-non,
+.table td.border-non {
+    border-top: none;
+}
+
+.table-danger-item {
+    color: var(--danger);
+}
+
+.table-success-item {
+    color: var(--success);
+}
+/*----------- Botones  bootstrap-----------*/
+.btn-primary {
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
+    .btn-primary:hover {
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+    .btn-primary:focus, .btn-primary.focus {
+        box-shadow: 0 0 0 0.2rem var(--pink-transparent);
+        background-color: var(--pink-dark);
+        border-color: var(--pink);
+    }
+
+    .btn-primary.disabled, .btn-primary:disabled {
+        color: var(--primary-font);
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+    .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+    .show > .btn-primary.dropdown-toggle {
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+        .show > .btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem var(--pink-transparent);
+        }
+
+.btn-outline-primary {
+    color: var(--pink);
+    border-color: var(--pink);
+}
+
+    .btn-outline-primary:hover {
+        color: #fff;
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+    .btn-outline-primary:focus, .btn-outline-primary.focus {
+        box-shadow: 0 0 0 0.2rem var(--pink-transparent);
+    }
+
+    .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+        color: var(--pink-transparent);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+    .show > .btn-outline-primary.dropdown-toggle {
+        color: #fff;
+        background-color: var(--pink-dark);
+        border-color: var(--pink-dark);
+    }
+
+        .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+        .show > .btn-outline-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem var(--pink-transparent);
+        }
+
+.page-item.active .page-link {
+    background-color: var(--pink);
+    border-color: var(--pink-dark);
+}
+
+.page-link {
+    color: var(--pink-dark);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.5em;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+    }
+
+/*----------- Layout -----------*/
+:root {
+    --gray-dark: #343a40;
+    --gray-base: #4f4f4f;
+    --gray-content: #6d6d6d;
+    --gray-logo: #8f8e8e;
+    --gray-light: #bcbcbc;
+    --pink: #ff87b7;
+    --pink-dark: #db709b;
+    --primary-font: white;
+    --second-font: black;
+    --pink-transparent: rgba(255, 135, 183, 0.5);
+    --border: #ced4da;
+}
+
+body {
+    background-color: var(--gray-base);
+    color: var(--primary-font);
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    background-color: var(--gray-logo);
+}
+
+    footer a {
+        color: var(--primary-font);
+        font-size: 1.5em;
+    }
+
+section {
+    margin-bottom: 15px;
+}
+
+.img-logo-footer {
+    max-height: 50px;
+}
+
+.container {
+    margin-top: 70px;
+}
+
+small a {
+    color: inherit;
+}
+
+.circle-25 {
+    width: 25px;
+    height: 25px;
+}
+
+.circle-35 {
+    width: 35px;
+    height: 35px;
+}
+
+.content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons-transaction {
+    height: 120px;
+    overflow-y: scroll;
+    border: var(--border) 1px solid;
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: #e9ecef;
+}
+
+.icons-transaction .row .col-4 {
+    border-radius: .25rem;
+}
+
+    .icons-transaction .row .col-4:hover {
+        background-color: var(--gray-light);
+        border: var(--gray-dark);
+    }
+
+.icons-transaction .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.icon-status {
+    font-size: 1.6em;
+    margin-right: 15px;
+}
+
+.selected-class {
+    background-color: var(--pink-transparent);
+    color: var(--gray-dark);
+}
+
+.date {
+    font-size: .6em;
+    font-style: italic;
+    display: block;
+    color: var(--pink);
+}
+/*----------- Pseudo-class -----------*/
+a:hover {
+    color: var(--pink);
+}
+
+/*----------- Fullcalendar -----------*/
+.alert-info-calendar {
+    background-color: var(--pink);
+    border: var(--gray-light);
+}
+
+.fc th {
+    text-transform: capitalize;
+}
+
+.fc-left, .fc-center, .fc-right button {
+    text-transform: capitalize;
+}
+
+/*----------- Jquery Validate -----------*/
+label.error, label.error-form {
+    color: red;
+    font-size: .60em;
+    display: inline;
+}

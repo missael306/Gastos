@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Gastos.Models;
-using Gastos.Data;
 
 namespace Gastos.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _context = context;
         }
 
         public IActionResult Index()
-        {            
+        {
             return View();
         }
 
