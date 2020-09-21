@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -35,9 +36,8 @@ namespace Gastos.Models
         }
         #endregion  
 
-        #region Relationships
-        public int UserID { get; set; }
-        public User User { get; set; }
+        #region Relationships        
+        public IdentityUser  User { get; set; }
         [Display(Name ="Tipo de transacción")]
         [Required(ErrorMessage = "Tipo de transacción es requerido.")]
         public int TypeTransactionID { get; set; }

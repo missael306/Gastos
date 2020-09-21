@@ -15,8 +15,7 @@ namespace Gastos.Models
        public int TypeTransactionID { get; set; }
        [Required(ErrorMessage = "Proporcione un nombre.")]
        [Display(Name ="Nombre")]
-       public string Name { get; set; }
-       [Required(ErrorMessage = "Icono no puede ser vacío.")]       
+       public string Name { get; set; }       
        #endregion
 
        #region Constructor

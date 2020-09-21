@@ -6,6 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200918184436_AddIcons.cs" />
+    <Compile Remove="Data\Migrations\20200918184436_AddIcons.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921133844_addIcons.cs" />
+    <Compile Remove="Data\Migrations\20200921133844_addIcons.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921133954_addIcons.cs" />
+    <Compile Remove="Data\Migrations\20200921133954_addIcons.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921134443_Test.cs" />
+    <Compile Remove="Data\Migrations\20200921134443_Test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921134838_Test.cs" />
+    <Compile Remove="Data\Migrations\20200921134838_Test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921145730_test.cs" />
+    <Compile Remove="Data\Migrations\20200921145730_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921145948_StructureInitial.cs" />
+    <Compile Remove="Data\Migrations\20200921145948_StructureInitial.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200921150319_StructureInitial.cs" />
+    <Compile Remove="Data\Migrations\20200921150319_StructureInitial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
     <Content Remove="C:\Users\missa\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
     <Content Remove="C:\Users\missa\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
