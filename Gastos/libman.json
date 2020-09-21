@@ -27,10 +27,6 @@
       ]
     },
     {
-      "library": "fullcalendar@3.10.2",
-      "destination": "wwwroot/lib/fullcalendar/"
-    },
-    {
       "library": "normalize@8.0.1",
       "destination": "wwwroot/lib/normalize/"
     },
@@ -52,6 +48,6 @@
     {
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
-    }
+    }    
   ]
 }

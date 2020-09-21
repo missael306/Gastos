@@ -1,0 +1,59 @@
+﻿@model Transaction
+<!--START: _frmAddTransaction-->
+<form id="frmAddTransaction" asp-controller="home" asp-action="AddTrasaction">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="sltTypeTransaction" asp-for="TypeTransactionID"></label>
+                <select class="form-control sltTypeTransaction" id="sltTypeTransaction" asp-for="TypeTransactionID">
+                    <option value="">-- Seleccione --</option>
+                    <option value="1">Gasto</option>
+                    <option value="2">Ingreso</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="txtComment" asp-for="Comment"></label>
+                <input type="text" id="txtComment" class="form-control" disabled="disabled" asp-for="Comment" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="numValue" asp-for="Value"></label>
+                <input asp-for="Value" type="text" id="numValue" class="form-control input-numeric" data-allowzero="none" disabled="disabled" data-thousands="," data-decimal="." data-precision="2" data-prefix="$" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="calActionDate" asp-for="ActionDate"></label>
+                <input asp-for="ActionDate" type="text" id="calActionDate" class="form-control input-date" value="@DateTime.Now.ToShortDateString()" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="sltCategory" asp-for="CategoryID"></label>
+                <input type="hidden" id="hdCategory" asp-for="CategoryID">
+                <small id="emailHelp" class="form-text text-muted">Para agregar una nueva categoría click <a href="#" class="changeContent">aquí</a>.</small>
+                <label id="hdCategory-error" class="error-form d-none">Por favor, selecciona una categoría</label>
+                <section class="icons-transaction p-1 disabled">
+                    <div class="row" id="contentIconsCategory">
+                        @foreach (Category category in ViewBag.lstCategories)
+                        {
+                            string cssClassIcon = category.Icon.IconName + " d-block";
+                            <div class="icon col-4 p-1 text-center" data-idcategory="@category.CategoryID">
+                                <i class="@cssClassIcon"></i>
+                                <small>@category.Name</small>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</form>
+<!--END: _frmAddTransaction-->

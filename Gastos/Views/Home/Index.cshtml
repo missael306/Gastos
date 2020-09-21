@@ -1,8 +1,134 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@section Styles{
+    <link href="~/lib/fullcalendar/core/css/main.css" rel="stylesheet" />
+    <link href="~/lib/fullcalendar/daygrid/css/main.css" rel="stylesheet" />
+    <link href="~/lib/fullcalendar/bootstrap/css/main.css" rel="stylesheet" />
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!--START: HOME-INDEX-->
+<section id="home-index">
+
+    <!--START: STATUS-->
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-success" role="alert">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 icon-status">
+                        <i class="fas fa-donate"></i>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="m-0">Ingresos</h5>
+                        <label class="m-0" id="lblDeposits">$ --</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 icon-status">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="m-0">Gastos</h5>
+                        <label class="m-0" id="lblExpenses">$ --</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="alert alert-dark" role="alert" id="dvBalance">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 icon-status">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="m-0">Balance</h5>
+                        <label class="m-0 numeric" id="lblBalance" data-thousands="," data-decimal="." data-precision="2" data-prefix="$">$ --</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END: STATUS-->
+    <!--START: FULLCALENDAR-->
+    <div id="calendarioHome">
+
+    </div>
+    <!--END: FULLCALENDAR-->
+    <!-- START: MODAL ADD TRANSACTION -->
+    <div class="modal fade" id="modalAddTransacion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <section id="sctAddTransaction">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Transacción</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            Transaction modelfrmAddTransaction = ViewBag.modelfrmAddTransaction;
+                            <partial name="_frmAddTransaction" model="modelfrmAddTransaction" />
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelTrasaction">Cancelar</button>
+                        <input type="submit" class="btn btn-primary d-none" id="btnAddTrasaction" form="frmAddTransaction" value="Guardar" />
+                    </div>
+                </section>
+                <section id="sctAddCategory">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Categoría</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @{
+                            Category modelfrmAddCategory = ViewBag.modelfrmAddCategory;
+                            <partial name="_frmAddCategory" model="modelfrmAddCategory" />
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-primary circle-35 rounded-circle changeContent content-center"><span class="fas fa-arrow-left"></span></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelCategory">Cancelar</button>
+                        <input type="submit" class="btn btn-primary d-none" id="btnAddCategory" form="frmAddCategory" value="Guardar" />
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- END: MODAL ADD TRANSACTION -->
+    <!-- START: MODAL DETAILS  -->
+    <div class="modal fade" id="modalDayDetails" tabindex="-1" aria-labelledby="modalDayDetailsTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDayDetailsTitle">Detalle de gastos <span class="date" id="spnDateDetails"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBodyExpensesDetails">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: MODAL DETAILS -->
+</section>
+<!--END: HOME-INDEX-->
+
+@section Scripts{
+    <script src="~/lib/fullcalendar/core/js/main.js"></script>
+    <script src="~/lib/fullcalendar/daygrid/js/main.js"></script>
+    <script src="~/lib/fullcalendar/bootstrap/js/main.js"></script>
+    <script src="~/js/Home/gastos.home.js"></script>
+}
