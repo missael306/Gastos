@@ -35,7 +35,7 @@ namespace Gastos.Models
         #region Methods
         private void CalculateBalance()
         {
-            decimal balance = Deposit - Expense;
+            decimal balance = Deposit + Expense;
             string cssClass = string.Empty;
             if (balance > 0)
                 cssClass = "alert alert-success";

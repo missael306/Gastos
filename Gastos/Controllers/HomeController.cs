@@ -10,6 +10,7 @@ using Gastos.Data;
 using Newtonsoft.Json;
 using Gastos.Business;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gastos.Controllers
 {
@@ -29,7 +30,7 @@ namespace Gastos.Controllers
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _homeBusiness = new HomeBusiness(context);
+            _homeBusiness = new HomeBusiness(context, userManager);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -39,7 +40,8 @@ namespace Gastos.Controllers
         }
         #endregion
 
-        #region INDEX        
+        #region INDEX 
+        [Authorize]
         public IActionResult Index(string lstAlertsSerialized = "")
         {
             //Alerts list
@@ -72,12 +74,13 @@ namespace Gastos.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTrasaction(Transaction model)
+        public async Task<IActionResult> AddTrasactionAsync(Transaction model)
         {
             //Add new Transacction
             List<Alert> lstAlerts = new List<Alert>();
             if (ModelState.IsValid)
             {
+                //TODO:Pasar el  GetUserAsync al  Business
                 model.User = await _userManager.GetUserAsync(User);
                 if (_homeBusiness.AddTrasaction(model))
                     lstAlerts.Add(new Alert("success", "Transacción registrada correctamente."));
@@ -122,8 +125,9 @@ namespace Gastos.Controllers
         }
 
         [HttpPost]
-        public JsonResult ExpensesDay(DateTime start, DateTime end)
+        public async Task<JsonResult> ExpensesDayAsync(DateTime start, DateTime end)
         {
+            IdentityUser usu = await _userManager.GetUserAsync(User);
             List<Expense> lstExpenses = _homeBusiness.LstExpensesDay(start, end);
             return Json(data: lstExpenses);
         }

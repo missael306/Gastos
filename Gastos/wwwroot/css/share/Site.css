@@ -143,7 +143,9 @@ a {
 
 footer {
     text-align: center;
-    background-color: var(--gray-logo);
+    background-color: var(--gray-logo);    
+    bottom: 0;
+    left: 0;
 }
 
     footer a {
@@ -151,6 +153,10 @@ footer {
         font-size: 1.5em;
     }
 
+
+    .footer-login{
+        position:absolute;
+    }
 section {
     margin-bottom: 15px;
 }
@@ -248,4 +254,49 @@ label.error, label.error-form {
     color: red;
     font-size: .60em;
     display: inline;
+}
+
+/*----------- Login -----------*/
+.login-container {
+    box-shadow: rgba(0, 0, 0, 0.75) -1px 0px 19px 1px;
+    border-radius: 5px;
+    min-height: 65vh;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.login-title {
+    background-color: var(--pink-dark);
+    color: var(--primary-font);
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+}
+
+.login-body {
+    width: 100%;
+    margin: 15px 0 0;
+    padding: 20px;
+}
+
+.container-login {
+    margin-top: 49px!important;
+}
+
+.btn-login-external {
+    font-size: 1.5em;
+    padding: 0;
+}
+
+.btn-facebook, .btn-facebook:hover, .btn-facebook:focus,.btn-facebook.focus {
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+
+.btn-google, .btn-google:hover, .btn-google:focus, .btn-google.focus {
+    background-color: #db4a39;
+    border-color: #db4a39;
+}
+
+.btn-login-external:hover {
+    border-color: white;
 }

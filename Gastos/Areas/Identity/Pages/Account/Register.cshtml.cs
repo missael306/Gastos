@@ -47,18 +47,18 @@ namespace Gastos.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Correo electrónico")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(16, ErrorMessage = "{0} debe contener al menos {2} caracteres y máximo {1}.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar contraseña")]
+            [Compare("Password", ErrorMessage = "La contraseña no coincide.")]
             public string ConfirmPassword { get; set; }
         }
 

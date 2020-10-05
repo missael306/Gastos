@@ -44,13 +44,15 @@ namespace Gastos.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Correo electrónico")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Mantener mi sesión")]
             public bool RememberMe { get; set; }
         }
 

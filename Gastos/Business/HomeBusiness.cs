@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Gastos.Business
 {
@@ -12,12 +13,14 @@ namespace Gastos.Business
     {
         #region Attributes
         private ApplicationDbContext _context;
+        UserManager<IdentityUser> _userManager;
         #endregion
 
         #region Constructor
-        public HomeBusiness(ApplicationDbContext context)
+        public HomeBusiness(ApplicationDbContext context, UserManager<IdentityUser> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
         #endregion 
 
@@ -95,13 +98,13 @@ namespace Gastos.Business
             return LstTransactions;
         }
 
-        public List<Transaction> LstTransactions(int type, DateTime start, DateTime end)
+        public List<Transaction> LstTransactions(int type, DateTime start, DateTime end )
         {
             //Return transactions per type 
-            //Type = 1 (Expense); Type = 2 (Deposit);
+            //Type = 1 (Expense); Type = 2 (Deposit);            
             List<Transaction> LstTransactions = new List<Transaction>();
             LstTransactions = _context.Transactions
-            .Where(x => x.TypeTransactionID == type && x.ActionDate >= start && x.ActionDate <= end)
+            .Where(x => x.TypeTransactionID == type && x.ActionDate >= start && x.ActionDate <= end )
             .Include(x => x.Category)
             .ToList();
             return LstTransactions;
