@@ -18,19 +18,19 @@ namespace Gastos.Controllers
     {
 
         #region Attrributes    
-        private ApplicationDbContext _context;        
+        private ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
-        private HomeBusiness _homeBusiness;        
+        private HomeBusiness _homeBusiness;
         private readonly UserManager<IdentityUser> _userManager;
         #endregion
 
         #region CONSTRUCT
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context ,UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _homeBusiness = new HomeBusiness(context, userManager);
+            _homeBusiness = new HomeBusiness(context);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -57,7 +57,8 @@ namespace Gastos.Controllers
             ViewBag.modelfrmAddCategory = new Category();
 
             //Catalogs
-            ICollection<Category> lstCategories = _homeBusiness.LstCategories();
+            string userId = _userManager.GetUserId(User);
+            ICollection<Category> lstCategories = _homeBusiness.LstCategories(userId);
             ViewBag.lstCategories = lstCategories;
             ICollection<Icon> lstCatIcons = _homeBusiness.LstIcons();
             ViewBag.lstIcons = lstCatIcons;
@@ -67,20 +68,20 @@ namespace Gastos.Controllers
         [HttpPost]
         public JsonResult Balance(DateTime start, DateTime end)
         {
-            decimal expenses = _homeBusiness.LstTransactions(1, start, end).Sum(x => x.Value);
-            decimal deposits = _homeBusiness.LstTransactions(2, start, end).Sum(x => x.Value);
+            string userId = _userManager.GetUserId(User);
+            decimal expenses = _homeBusiness.LstTransactions(1, start, end, userId).Sum(x => x.Value);
+            decimal deposits = _homeBusiness.LstTransactions(2, start, end, userId).Sum(x => x.Value);
             Balance balance = new Balance(deposits, expenses);
             return Json(data: balance);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTrasactionAsync(Transaction model)
+        public async Task<IActionResult> AddTransaction(Transaction model)
         {
             //Add new Transacction
             List<Alert> lstAlerts = new List<Alert>();
             if (ModelState.IsValid)
             {
-                //TODO:Pasar el  GetUserAsync al  Business
                 model.User = await _userManager.GetUserAsync(User);
                 if (_homeBusiness.AddTrasaction(model))
                     lstAlerts.Add(new Alert("success", "Transacción registrada correctamente."));
@@ -97,12 +98,13 @@ namespace Gastos.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCategory(Category model)
+        public async Task<IActionResult> AddCategory(Category model)
         {
             //Add new Category            
             List<Alert> lstAlerts = new List<Alert>();
             if (ModelState.IsValid)
             {
+                model.User = await _userManager.GetUserAsync(User);
                 if (_homeBusiness.AddCategory(model))
                     lstAlerts.Add(new Alert("success", "Categoría registrada correctamente."));
             }
@@ -120,15 +122,16 @@ namespace Gastos.Controllers
         [HttpPost]
         public JsonResult LstCategoriesByTypeTransaction(int idTypeTransaction)
         {
-            ICollection<Category> lstCetegories = _homeBusiness.LstCategories(idTypeTransaction);
+            string userId = _userManager.GetUserId(User);
+            ICollection<Category> lstCetegories = _homeBusiness.LstCategories(idTypeTransaction, userId);
             return Json(data: lstCetegories);
         }
 
         [HttpPost]
-        public async Task<JsonResult> ExpensesDayAsync(DateTime start, DateTime end)
+        public JsonResult ExpensesDay(DateTime start, DateTime end)
         {
-            IdentityUser usu = await _userManager.GetUserAsync(User);
-            List<Expense> lstExpenses = _homeBusiness.LstExpensesDay(start, end);
+            string userId = _userManager.GetUserId(User);
+            List<Expense> lstExpenses = _homeBusiness.LstExpensesDay(start, end, userId);
             return Json(data: lstExpenses);
         }
 
@@ -141,8 +144,9 @@ namespace Gastos.Controllers
         [HttpPost]
         public JsonResult LstExpensesDay(DateTime day)
         {
-            List<Transaction> lstDeposits = _homeBusiness.LstTransactions(2, day, day);
-            List<Transaction> lstExpenses = _homeBusiness.LstTransactions(1, day, day);
+            string userId = _userManager.GetUserId(User);
+            List<Transaction> lstDeposits = _homeBusiness.LstTransactions(2, day, day, userId);
+            List<Transaction> lstExpenses = _homeBusiness.LstTransactions(1, day, day, userId);
             List<Transaction> lstTotal = new List<Transaction>();
             lstTotal.AddRange(lstDeposits);
             lstTotal.AddRange(lstExpenses);

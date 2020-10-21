@@ -32,7 +32,7 @@ namespace Gastos.Models
             this.Comment = string.Empty;
             this.ActionDate = DateTime.Now;
             this.CategoryID = 0;
-            this.Value = 0.0m;
+            this.Value = 0.0m;            
         }
         #endregion  
 

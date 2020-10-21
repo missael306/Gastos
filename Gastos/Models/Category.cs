@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -40,7 +41,8 @@ namespace Gastos.Models
         [Display(Name ="Clasificación")]
         [Required(ErrorMessage = "Clasificación es requerido.")]
         public int TypeTransactionID { get; set; }
-        public TypeTransaction TypeTransaction { get; set; }            
+        public TypeTransaction TypeTransaction { get; set; }
+        public IdentityUser User { get; set; }
         #endregion
 
         #region Methods

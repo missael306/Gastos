@@ -13,30 +13,28 @@ namespace Gastos.Business
     {
         #region Attributes
         private ApplicationDbContext _context;
-        UserManager<IdentityUser> _userManager;
         #endregion
 
         #region Constructor
-        public HomeBusiness(ApplicationDbContext context, UserManager<IdentityUser> UserManager)
+        public HomeBusiness(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = UserManager;
         }
         #endregion 
 
         #region Methods        
         //-------------------   Catalogs
-        public ICollection<Category> LstCategories()
+        public ICollection<Category> LstCategories(string userId)
         {
             //it gets all the categories without filter
-            ICollection<Category> lstCategories = _context.Categories.Include(x => x.Icon).ToList();
+            ICollection<Category> lstCategories = _context.Categories.Where(x => x.User == null || x.User.Id == userId).Include(x => x.Icon).ToList();
             return lstCategories;
         }
 
-        public ICollection<Category> LstCategories(int idTypeTransaccion)
+        public ICollection<Category> LstCategories(int idTypeTransaccion, string userId)
         {
             //gets categories according to idTypeTransaccion
-            ICollection<Category> lstCategories = _context.Categories.Where(x => x.TypeTransactionID == idTypeTransaccion).Include(x => x.Icon).ToList();
+            ICollection<Category> lstCategories = _context.Categories.Where(x => x.TypeTransactionID == idTypeTransaccion && (x.User.Id == userId || x.User == null)).Include(x => x.Icon).ToList();
             return lstCategories;
         }
 
@@ -83,7 +81,7 @@ namespace Gastos.Business
         //-------------------   Transactions
         public List<Transaction> LstTransactions()
         {
-            //Type = 1 (Expense); Type = 2 (Deposit);
+            //Type = 1 (Expense); Type = 2 (Deposit);            
             List<Transaction> LstTransactions = new List<Transaction>();
             LstTransactions = _context.Transactions.ToList();
             return LstTransactions;
@@ -98,26 +96,26 @@ namespace Gastos.Business
             return LstTransactions;
         }
 
-        public List<Transaction> LstTransactions(int type, DateTime start, DateTime end )
+        public List<Transaction> LstTransactions(int type, DateTime start, DateTime end, string userId)
         {
             //Return transactions per type 
-            //Type = 1 (Expense); Type = 2 (Deposit);            
+            //Type = 1 (Expense); Type = 2 (Deposit);                        
             List<Transaction> LstTransactions = new List<Transaction>();
             LstTransactions = _context.Transactions
-            .Where(x => x.TypeTransactionID == type && x.ActionDate >= start && x.ActionDate <= end )
+            .Where(x => x.TypeTransactionID == type && x.ActionDate >= start && x.ActionDate <= end && x.User.Id == userId)
             .Include(x => x.Category)
             .ToList();
             return LstTransactions;
         }
 
-        public List<Expense> LstExpensesDay(DateTime start, DateTime end)
+        public List<Expense> LstExpensesDay(DateTime start, DateTime end, string userId)
         {
             //Return the list of expenses in a day for the fullcalendar
             List<Expense> lstExpenses = new List<Expense>();
             for (DateTime fecha = start; fecha <= end; fecha = fecha.AddDays(1))
             {
-                decimal expenses = LstTransactions(1, fecha, fecha).Sum(x => x.Value);
-                decimal deposits = LstTransactions(2, fecha, fecha).Sum(x => x.Value);
+                decimal expenses = LstTransactions(1, fecha, fecha, userId).Sum(x => x.Value);
+                decimal deposits = LstTransactions(2, fecha, fecha, userId).Sum(x => x.Value);
                 decimal balance = deposits + expenses;
 
                 Expense expense = new Expense();

@@ -4,14 +4,16 @@ using Gastos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gastos.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201007191551_AddCategoryByUser")]
+    partial class AddCategoryByUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +69,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 1,
                             Name = "Entretenimiento",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 679, DateTimeKind.Local).AddTicks(5224),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(3671),
                             TypeTransactionID = 1
                         },
                         new
@@ -76,7 +78,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 2,
                             Name = "Salud",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 679, DateTimeKind.Local).AddTicks(9587),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(6660),
                             TypeTransactionID = 1
                         },
                         new
@@ -85,7 +87,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 3,
                             Name = "Salario",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 680, DateTimeKind.Local).AddTicks(465),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(6744),
                             TypeTransactionID = 2
                         },
                         new
@@ -94,7 +96,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 4,
                             Name = "Automóvil",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 680, DateTimeKind.Local).AddTicks(508),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(6749),
                             TypeTransactionID = 1
                         },
                         new
@@ -103,7 +105,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 5,
                             Name = "Casa",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 680, DateTimeKind.Local).AddTicks(520),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(6754),
                             TypeTransactionID = 1
                         },
                         new
@@ -112,7 +114,7 @@ namespace Gastos.Data.Migrations
                             Active = true,
                             IconID = 6,
                             Name = "Comida",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 680, DateTimeKind.Local).AddTicks(529),
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 246, DateTimeKind.Local).AddTicks(6760),
                             TypeTransactionID = 1
                         });
                 });
@@ -145,283 +147,45 @@ namespace Gastos.Data.Migrations
                     b.HasData(
                         new
                         {
-                            IconID = 7,
-                            Active = true,
-                            IconName = "fab fa-airbnb",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9532)
-                        },
-                        new
-                        {
-                            IconID = 8,
-                            Active = true,
-                            IconName = "fab fa-amazon",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9579)
-                        },
-                        new
-                        {
-                            IconID = 9,
-                            Active = true,
-                            IconName = "fab fa-apple",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9583)
-                        },
-                        new
-                        {
-                            IconID = 10,
-                            Active = true,
-                            IconName = "fas fa-baby",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9588)
-                        },
-                        new
-                        {
-                            IconID = 11,
-                            Active = true,
-                            IconName = "fas fa-bone",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9592)
-                        },
-                        new
-                        {
-                            IconID = 12,
-                            Active = true,
-                            IconName = "fas fa-ambulance",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9601)
-                        },
-                        new
-                        {
-                            IconID = 13,
-                            Active = true,
-                            IconName = "fas fa-bus-alt",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9605)
-                        },
-                        new
-                        {
-                            IconID = 14,
-                            Active = true,
-                            IconName = "fas fa-gas-pump",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9609)
-                        },
-                        new
-                        {
-                            IconID = 15,
-                            Active = true,
-                            IconName = "fas fa-taxi",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9613)
-                        },
-                        new
-                        {
-                            IconID = 16,
-                            Active = true,
-                            IconName = "fas fa-coffee",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9620)
-                        },
-                        new
-                        {
-                            IconID = 17,
-                            Active = true,
-                            IconName = "fas fa-cocktail",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9624)
-                        },
-                        new
-                        {
-                            IconID = 18,
-                            Active = true,
-                            IconName = "fas fa-birthday-cake",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9628)
-                        },
-                        new
-                        {
-                            IconID = 19,
-                            Active = true,
-                            IconName = "fas fa-tshirt",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9632)
-                        },
-                        new
-                        {
-                            IconID = 20,
-                            Active = true,
-                            IconName = "fas fa-wifi",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9636)
-                        },
-                        new
-                        {
-                            IconID = 21,
-                            Active = true,
-                            IconName = "fas fa-tv",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9640)
-                        },
-                        new
-                        {
-                            IconID = 22,
-                            Active = true,
-                            IconName = "fas fa-laptop",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9644)
-                        },
-                        new
-                        {
-                            IconID = 23,
-                            Active = true,
-                            IconName = "fas fa-money-bill-wave",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9648)
-                        },
-                        new
-                        {
-                            IconID = 24,
-                            Active = true,
-                            IconName = "fas fa-dollar-sign",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9653)
-                        },
-                        new
-                        {
-                            IconID = 25,
-                            Active = true,
-                            IconName = "fas fa-graduation-cap",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9658)
-                        },
-                        new
-                        {
-                            IconID = 26,
-                            Active = true,
-                            IconName = "fas fa-credit-card",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9662)
-                        },
-                        new
-                        {
-                            IconID = 27,
-                            Active = true,
-                            IconName = "fas fa-heartbeat",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9666)
-                        },
-                        new
-                        {
-                            IconID = 28,
-                            Active = true,
-                            IconName = "fas fa-bone",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9670)
-                        },
-                        new
-                        {
-                            IconID = 29,
-                            Active = true,
-                            IconName = "fas fa-pizza-slice",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9674)
-                        },
-                        new
-                        {
-                            IconID = 30,
-                            Active = true,
-                            IconName = "fas fa-dice",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9678)
-                        },
-                        new
-                        {
-                            IconID = 31,
-                            Active = true,
-                            IconName = "fab fa-playstation",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9682)
-                        },
-                        new
-                        {
-                            IconID = 32,
-                            Active = true,
-                            IconName = "fab fa-steam",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9687)
-                        },
-                        new
-                        {
-                            IconID = 33,
-                            Active = true,
-                            IconName = "fab fa-xbox",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9691)
-                        },
-                        new
-                        {
-                            IconID = 34,
-                            Active = true,
-                            IconName = "fas fa-hand-holding-usd",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9695)
-                        },
-                        new
-                        {
-                            IconID = 35,
-                            Active = true,
-                            IconName = "fas fa-ambulance",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9699)
-                        },
-                        new
-                        {
-                            IconID = 36,
-                            Active = true,
-                            IconName = "far fa-hospital",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9704)
-                        },
-                        new
-                        {
-                            IconID = 37,
-                            Active = true,
-                            IconName = "fas fa-gift",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9708)
-                        },
-                        new
-                        {
-                            IconID = 38,
-                            Active = true,
-                            IconName = "fas fa-dumbbell",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9712)
-                        },
-                        new
-                        {
-                            IconID = 39,
-                            Active = true,
-                            IconName = "fas fa-house-user",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9716)
-                        },
-                        new
-                        {
-                            IconID = 40,
-                            Active = true,
-                            IconName = "fas fa-headphones",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9721)
-                        },
-                        new
-                        {
                             IconID = 1,
                             Active = true,
                             IconName = "fas fa-glass-cheers",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 674, DateTimeKind.Local).AddTicks(6785)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 242, DateTimeKind.Local).AddTicks(6731)
                         },
                         new
                         {
                             IconID = 2,
                             Active = true,
                             IconName = "fas fa-hospital",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9036)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 245, DateTimeKind.Local).AddTicks(9382)
                         },
                         new
                         {
                             IconID = 3,
                             Active = true,
                             IconName = "fas fa-wallet",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9121)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 245, DateTimeKind.Local).AddTicks(9446)
                         },
                         new
                         {
                             IconID = 4,
                             Active = true,
                             IconName = "fas fa-car",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9133)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 245, DateTimeKind.Local).AddTicks(9453)
                         },
                         new
                         {
                             IconID = 5,
                             Active = true,
                             IconName = "fas fa-house-user",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9140)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 245, DateTimeKind.Local).AddTicks(9457)
                         },
                         new
                         {
                             IconID = 6,
                             Active = true,
                             IconName = "fas fa-utensils",
-                            RegisterDate = new DateTime(2020, 10, 21, 7, 50, 2, 678, DateTimeKind.Local).AddTicks(9147)
+                            RegisterDate = new DateTime(2020, 10, 7, 14, 15, 51, 245, DateTimeKind.Local).AddTicks(9462)
                         });
                 });
 

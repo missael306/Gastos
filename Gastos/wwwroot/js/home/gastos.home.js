@@ -48,7 +48,7 @@ Gastos.Home = (function () {
                     right: "addTransaction managerCategories today  prev,next",
                 },
                 events: {
-                    url: `${Controller}/ExpensesDayAsync`,
+                    url: `${Controller}/ExpensesDay`,
                     method: "POST",
                 },
                 eventClick: lstExpensesDetails,
