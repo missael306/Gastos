@@ -12,6 +12,7 @@ using Gastos.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Gastos.Models;
 
 namespace Gastos
 {
@@ -45,8 +46,15 @@ namespace Gastos
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<ErrorDescriber>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

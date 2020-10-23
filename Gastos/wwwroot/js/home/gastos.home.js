@@ -34,13 +34,7 @@ Gastos.Home = (function () {
                         click: function () {
                             addTransaction();
                         },
-                    },
-                    managerCategories: {
-                        text: "Categorias",
-                        click: function () {
-                            window.location.href = "./Category/Index";
-                        },
-                    },
+                    }
                 },
                 header: {
                     left: "title",
@@ -98,13 +92,13 @@ Gastos.Home = (function () {
             );
         };
 
-        let lstExpensesDetails = function (info) {
+        let lstExpensesDetails = function (info) {            
             let date = moment(info.event.start).format("DD/MM/YYYY");
             $.ajax({
                 method: "POST",
                 url: `${Controller}/ExpensesDayDetails`,
             }).done(function (response) {
-                $("#spnDateDetails").text(moment(date).format("DD/MM/YYYY"));
+                $("#spnDateDetails").text(date);
                 $("#modalBodyExpensesDetails").html("");
                 $("#modalBodyExpensesDetails").html(response);
                 $("#modalDayDetails").modal("show");

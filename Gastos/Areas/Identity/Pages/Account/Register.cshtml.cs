@@ -45,12 +45,12 @@ namespace Gastos.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage ="Campo requerido")]
             [EmailAddress]
             [Display(Name = "Correo electrónico")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Campo requerido")]
             [StringLength(16, ErrorMessage = "{0} debe contener al menos {2} caracteres y máximo {1}.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
