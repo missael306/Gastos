@@ -300,3 +300,14 @@ label.error, label.error-form {
 .btn-login-external:hover {
     border-color: white;
 }
+
+@media (max-width: 576px) {
+    .container-login {
+        margin-top:20px!important;        
+    }
+
+    .fc-toolbar h2{
+        font-size:1.2em!important;
+    }
+
+}

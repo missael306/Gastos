@@ -25,7 +25,7 @@ Gastos.Home = (function () {
 
             let calendar = new FullCalendar.Calendar(calendarItem, {
                 cursor: "pointer",
-                plugins: ["dayGrid", "bootstrap"],
+                plugins: ["dayGrid", "bootstrap"],                
                 themeSystem: "bootstrap",
                 locale: "es",
                 customButtons: {
@@ -39,7 +39,7 @@ Gastos.Home = (function () {
                 header: {
                     left: "title",
                     center: "",
-                    right: "addTransaction managerCategories today  prev,next",
+                    right: "addTransaction prev,next",
                 },
                 events: {
                     url: `${Controller}/ExpensesDay`,
@@ -92,7 +92,7 @@ Gastos.Home = (function () {
             );
         };
 
-        let lstExpensesDetails = function (info) {            
+        let lstExpensesDetails = function (info) {
             let date = moment(info.event.start).format("DD/MM/YYYY");
             $.ajax({
                 method: "POST",
