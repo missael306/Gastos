@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Gastos.Business;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace Gastos.Controllers
 {
@@ -25,12 +26,13 @@ namespace Gastos.Controllers
         #endregion
 
         #region CONSTRUCT
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<IdentityUser> userManager, IConfiguration configuration)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
             _homeBusiness = new HomeBusiness(context);
+            Configuration = configuration;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -39,6 +41,8 @@ namespace Gastos.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         #endregion
+
+        public IConfiguration Configuration { get; }
 
         #region INDEX 
         [Authorize]
@@ -62,6 +66,11 @@ namespace Gastos.Controllers
             ViewBag.lstCategories = lstCategories;
             ICollection<Icon> lstCatIcons = _homeBusiness.LstIcons();
             ViewBag.lstIcons = lstCatIcons;
+
+            ViewBag.AppId = Configuration["AppId"];
+            ViewBag.AppSecret = Configuration["AppSecret"];
+            ViewBag.ClientId = Configuration["ClientId"];
+            ViewBag.ClientSecret = Configuration["ClientSecret"];
             return View();
         }
 

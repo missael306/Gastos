@@ -28,8 +28,7 @@ namespace Gastos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Configuration.GetValue("ClientId", "890463009061-dio0t6462ipl3130g1in2h557gdipm5e.apps.googleusercontent.com");
-            ;
+            
             services.AddAuthentication()
             .AddFacebook(facebookOptions =>
             {
@@ -38,13 +37,13 @@ namespace Gastos
             })
             .AddGoogle(options =>
             {                
-                options.ClientId = Configuration["AppId"];
-                options.ClientSecret = Configuration["AppSecret"];
+                options.ClientId = Configuration["ClientId"];
+                options.ClientSecret = Configuration["ClientSecret"];
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("AzureConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
