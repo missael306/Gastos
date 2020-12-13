@@ -28,6 +28,8 @@ namespace Gastos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Configuration.GetValue("ClientId", "890463009061-dio0t6462ipl3130g1in2h557gdipm5e.apps.googleusercontent.com");
+            ;
             services.AddAuthentication()
             .AddFacebook(facebookOptions =>
             {
@@ -35,12 +37,9 @@ namespace Gastos
                 facebookOptions.AppSecret = Configuration["AppSecret"];
             })
             .AddGoogle(options =>
-            {
-                IConfigurationSection googleAuthNSection =
-                    Configuration.GetSection("Authentication:Google");
-
-                options.ClientId = googleAuthNSection["ClientId"];
-                options.ClientSecret = googleAuthNSection["ClientSecret"];
+            {                
+                options.ClientId = Configuration["AppId"];
+                options.ClientSecret = Configuration["AppSecret"];
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
