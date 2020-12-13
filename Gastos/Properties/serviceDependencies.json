@@ -1,8 +1,16 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "AzureConnection"
+    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "DefaultConnection"
+    },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "VaultUri"
     }
   }
 }
