@@ -66,11 +66,7 @@ namespace Gastos.Controllers
             ViewBag.lstCategories = lstCategories;
             ICollection<Icon> lstCatIcons = _homeBusiness.LstIcons();
             ViewBag.lstIcons = lstCatIcons;
-
-            ViewBag.AppId = Configuration["AppId"];
-            ViewBag.AppSecret = Configuration["AppSecret"];
-            ViewBag.ClientId = Configuration["ClientId"];
-            ViewBag.ClientSecret = Configuration["ClientSecret"];
+            
             return View();
         }
 
