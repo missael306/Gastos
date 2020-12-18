@@ -19,9 +19,9 @@ namespace Gastos.Controllers
     {
 
         #region Attrributes    
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly ILogger<HomeController> _logger;
-        private HomeBusiness _homeBusiness;
+        private readonly HomeBusiness _homeBusiness;
         private readonly UserManager<IdentityUser> _userManager;
         #endregion
 

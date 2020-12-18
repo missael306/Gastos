@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Gastos.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Azure.Identity;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
@@ -26,7 +19,7 @@ namespace Gastos
            Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((ctx, builder) =>
             {
-                var keyVaultEndpoint = GetKeyVaultEndpoint();
+                var keyVaultEndpoint = KeyVaultEndpoint;
                 if (!string.IsNullOrEmpty(keyVaultEndpoint))
                 {
                     var azureServiceTokenProvider = new AzureServiceTokenProvider();
@@ -42,6 +35,6 @@ namespace Gastos
             {
                 webBuilder.UseStartup<Startup>();
             });
-            private static string GetKeyVaultEndpoint() => "https://controldegastosvault.vault.azure.net/";
+        private static string KeyVaultEndpoint => "https://controldegastosvault.vault.azure.net/";
     }
 }
