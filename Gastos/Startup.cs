@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Gastos.Models;
+using System.Globalization;
 
 namespace Gastos
 {
@@ -48,12 +49,19 @@ namespace Gastos
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<ErrorDescriber>();
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var cultureInfo = new CultureInfo("en-US");
+            cultureInfo.NumberFormat.CurrencySymbol = "$";
+            cultureInfo.NumberFormat.CurrencyNegativePattern = 1;
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,7 +81,7 @@ namespace Gastos
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthorization();            
 
             app.UseEndpoints(endpoints =>
             {
