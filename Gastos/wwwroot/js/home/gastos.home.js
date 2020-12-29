@@ -16,13 +16,13 @@ Gastos.Home = (function () {
             validFormAddTransaction();
             validFormAddCategory();
             selectIconCategory();
+            deploy();
         };
 
         //----------------------------------------------------- INDEX
         let iniCalendar = function () {
             //Initialize the calendar in Index
-            let calendarItem = document.getElementById("calendarioHome");
-
+            let calendarItem = document.getElementById("calendarioHome");            
             let calendar = new FullCalendar.Calendar(calendarItem, {
                 cursor: "pointer",
                 plugins: ["dayGrid", "bootstrap"],                
@@ -44,6 +44,10 @@ Gastos.Home = (function () {
                 events: {
                     url: `${Controller}/ExpensesDay`,
                     method: "POST",
+                    sucess: function () {
+                        console.log("ok")
+                        console.log(response)
+                    }
                 },
                 eventClick: lstExpensesDetails,
             });
@@ -153,6 +157,16 @@ Gastos.Home = (function () {
             };
             $("#tblExpensesDetails").DataTable(config);
         };
+
+        let deploy = function () {
+            console.log("deploy")
+            $.ajax({
+                method: "POST",
+                url: `${Controller}/ExpensesDayDeploy`
+            }).done(function (response) {
+                console.log(response)
+            });
+        }
 
         //----------------------------------------------------- MODAL TRANSACTION / CATEGORY
         let changeModalContet = function () {

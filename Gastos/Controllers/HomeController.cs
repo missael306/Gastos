@@ -140,6 +140,16 @@ namespace Gastos.Controllers
         }
 
         [HttpPost]
+        public JsonResult ExpensesDayDeploy()
+        {
+            string userId = _userManager.GetUserId(User);
+            DateTime start = new DateTime(2020, 11, 30);
+            DateTime end = new DateTime(2021, 01, 10);
+            List<Transaction> lstDeploy = _homeBusiness.LstTransactions(1, start, end,userId);
+            return Json(data: lstDeploy);
+        }
+
+        [HttpPost]
         public IActionResult ExpensesDayDetails()
         {
             return PartialView("_expensesDayDetails");
