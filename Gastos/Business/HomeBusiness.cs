@@ -115,7 +115,7 @@ namespace Gastos.Business
             {
                 decimal expenses = LstTransactions(1, fecha, fecha, userId).Sum(x => x.Value);
                 decimal deposits = LstTransactions(2, fecha, fecha, userId).Sum(x => x.Value);
-                decimal balance = 100;
+                decimal balance = deposits + expenses;
 
                 Expense expense = new Expense();
                 expense.id = fecha.Day;
