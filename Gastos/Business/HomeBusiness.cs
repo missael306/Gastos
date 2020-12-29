@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gastos.Business
@@ -12,7 +11,7 @@ namespace Gastos.Business
     public class HomeBusiness
     {
         #region Attributes
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         #endregion
 
         #region Constructor
@@ -116,7 +115,7 @@ namespace Gastos.Business
             {
                 decimal expenses = LstTransactions(1, fecha, fecha, userId).Sum(x => x.Value);
                 decimal deposits = LstTransactions(2, fecha, fecha, userId).Sum(x => x.Value);
-                decimal balance = deposits + expenses;
+                decimal balance = 100;
 
                 Expense expense = new Expense();
                 expense.id = fecha.Day;

@@ -23,6 +23,7 @@ namespace Gastos.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly HomeBusiness _homeBusiness;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IConfiguration configuration;
         #endregion
 
         #region CONSTRUCT
@@ -32,7 +33,7 @@ namespace Gastos.Controllers
             _context = context;
             _userManager = userManager;
             _homeBusiness = new HomeBusiness(context);
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -41,9 +42,7 @@ namespace Gastos.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         #endregion
-
-        public IConfiguration Configuration { get; }
-
+        
         #region INDEX 
         [Authorize]
         public IActionResult Index(string lstAlertsSerialized = "")

@@ -49,9 +49,9 @@ namespace Gastos.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Correo electrónico")]
             public string Email { get; set; }
-
-            [Required(ErrorMessage = "Campo requerido")]
-            [StringLength(16, ErrorMessage = "{0} debe contener al menos {2} caracteres y máximo {1}.", MinimumLength = 6)]
+                             
+            [Required(ErrorMessage = "Campo requerido")]            
+            [RegularExpression(@"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$", ErrorMessage = "<p style='margin:0'>Contraseña de contener al menos:</p> <ul><li>1 mayúscula</li><li>1 minúscula</li><li>1 número</li><li>Al menos 6 caracteres y máximo 16</li></ul>")]             
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
             public string Password { get; set; }
