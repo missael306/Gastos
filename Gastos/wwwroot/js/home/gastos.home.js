@@ -246,7 +246,7 @@ Gastos.Home = (function () {
                         },
                     },
                 },
-                submitHandler: function (form) {
+                submitHandler: function (form) {                    
                     Share.CleanForm("frmAddTransaction");
                     let idCategory = $("#hdCategory").val();
                     if (idCategory != 0) {

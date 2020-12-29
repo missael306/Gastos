@@ -43,7 +43,12 @@ Gastos.Share = (function() {
             //Remove mask and others characters in the fields of the form
             $(`#${idForm} .input-numeric`).each(function(index,item){
                 $(item).val($(item).val().replace("$","").split(",").join(""));
-            })         
+            })      
+
+            //Set the format date in YYYY-MM-DD
+            $(`#${idForm} .input-date`).each(function (index, item) {
+                $(item).val(moment($(item).datepicker("getDate")).format("YYYY/MM/DD"));
+            })
         }
 
         this.Confirm = function($titulo,$mensaje,$columns){
