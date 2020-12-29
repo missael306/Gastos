@@ -145,8 +145,22 @@ namespace Gastos.Controllers
             string userId = _userManager.GetUserId(User);
             DateTime start = new DateTime(2020, 11, 30);
             DateTime end = new DateTime(2021, 01, 10);
-            List<Transaction> lstDeploy = _homeBusiness.LstTransactions(1, start, end,userId);
-            return Json(data: lstDeploy);
+            List<Expense> lstExpenses = new List<Expense>();
+            for (DateTime fecha = start; fecha <= end; fecha = fecha.AddDays(1))
+            {
+                decimal expenses = _homeBusiness.LstTransactions(1, fecha, fecha, userId).Sum(x => x.Value);
+                decimal deposits = _homeBusiness.LstTransactions(2, fecha, fecha, userId).Sum(x => x.Value);
+                decimal balance = deposits + expenses;
+
+                Expense expense = new Expense();
+                expense.id = fecha.Day;
+                expense.start = fecha.ToString("yyyy-MM-dd");
+                expense.title = String.Format("{0:c}", balance);
+                expense.deposit = deposits;
+                expense.expense = expenses;
+                lstExpenses.Add(expense);
+            }            
+            return Json(data: lstExpenses );
         }
 
         [HttpPost]
