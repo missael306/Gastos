@@ -140,11 +140,9 @@ namespace Gastos.Controllers
         }
 
         [HttpPost]
-        public JsonResult ExpensesDayDeploy()
+        public JsonResult ExpensesDayDeploy(DateTime start, DateTime end)
         {
-            string userId = _userManager.GetUserId(User);
-            DateTime start = new DateTime(2020, 11, 30);
-            DateTime end = new DateTime(2021, 01, 10);
+            string userId = _userManager.GetUserId(User);            
             List<Expense> lstExpenses = new List<Expense>();
             for (DateTime fecha = start; fecha <= end; fecha = fecha.AddDays(1))
             {
