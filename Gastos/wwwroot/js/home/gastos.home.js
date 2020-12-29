@@ -91,17 +91,16 @@ Gastos.Home = (function () {
             );
         };
 
-        let lstExpensesDetails = function (info) {
-            let date = moment(info.event.start).format("DD/MM/YYYY");
+        let lstExpensesDetails = function (info) {            
             $.ajax({
                 method: "POST",
                 url: `${Controller}/ExpensesDayDetails`,
             }).done(function (response) {
-                $("#spnDateDetails").text(date);
+                $("#spnDateDetails").text(moment(info.event.start).format("DD/MM/YYYY"));
                 $("#modalBodyExpensesDetails").html("");
                 $("#modalBodyExpensesDetails").html(response);
                 $("#modalDayDetails").modal("show");
-                TableDetails(date);
+                TableDetails(moment(info.event.start).format("YYYY/MM/DD"));
             }); //TODO:y que pasa cuando  falla?
         };
 
