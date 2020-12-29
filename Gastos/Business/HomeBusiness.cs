@@ -120,7 +120,8 @@ namespace Gastos.Business
                 Expense expense = new Expense();
                 expense.id = fecha.Day;
                 expense.start = fecha.ToString("yyyy-MM-dd");
-                expense.title = String.Format("{0:c}", balance);
+                expense.end = fecha.ToString("yyyy-MM-dd");
+                expense.title = balance.ToString();
                 if (balance > 0)
                     expense.backgroundColor = "green";
                 else if (balance < 0)
