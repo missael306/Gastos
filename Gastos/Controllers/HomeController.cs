@@ -155,7 +155,7 @@ namespace Gastos.Controllers
                 Expense expense = new Expense();
                 expense.id = fecha.Day;
                 expense.start = fecha.ToString("yyyy-MM-dd");
-                expense.title = String.Format("{0:c}", balance);
+                expense.title = balance.ToString();
                 expense.deposit = deposits;
                 expense.expense = expenses;
                 lstExpenses.Add(expense);
