@@ -42,12 +42,8 @@ Gastos.Home = (function () {
                     right: "addTransaction prev,next",
                 },
                 events: {
-                    url: `${Controller}/ExpensesDay`,
-                    method: "POST",
-                    sucess: function () {
-                        console.log("ok")
-                        console.log(response)
-                    }
+                    url: `${Controller}/ExpensesDayDeploy`,
+                    method: "POST"                    
                 },
                 eventClick: lstExpensesDetails,
             });
