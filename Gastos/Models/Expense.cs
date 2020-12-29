@@ -18,9 +18,6 @@ namespace Gastos.Models
         public string backgroundColor { get; set; }
         public string textColor { get; set; }
         public string eventBorderColor { get; set; }
-
-        public decimal expense { get; set; }
-        public decimal deposit { get; set; }
         #endregion
 
         #region Constructors    

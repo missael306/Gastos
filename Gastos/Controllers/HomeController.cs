@@ -135,30 +135,10 @@ namespace Gastos.Controllers
         public JsonResult ExpensesDay(DateTime start, DateTime end)
         {
             string userId = _userManager.GetUserId(User);
-            List<Expense> lstExpenses = _homeBusiness.LstExpensesDay(start, end, userId);
+            DateTime dateStart = new DateTime(start.Year, start.Month, start.Day);
+            DateTime dateEnd = new DateTime(end.Year, end.Month, end.Day);
+            List<Expense> lstExpenses = _homeBusiness.LstExpensesDay(dateStart, dateEnd, userId);
             return Json(data: lstExpenses);
-        }
-
-        [HttpPost]
-        public JsonResult ExpensesDayDeploy(DateTime start, DateTime end)
-        {
-            string userId = _userManager.GetUserId(User);            
-            List<Expense> lstExpenses = new List<Expense>();
-            for (DateTime fecha = start; fecha <= end; fecha = fecha.AddDays(1))
-            {
-                decimal expenses = _homeBusiness.LstTransactions(1, fecha, fecha, userId).Sum(x => x.Value);
-                decimal deposits = _homeBusiness.LstTransactions(2, fecha, fecha, userId).Sum(x => x.Value);
-                decimal balance = deposits + expenses;
-
-                Expense expense = new Expense();
-                expense.id = fecha.Day;
-                expense.start = fecha.ToString("yyyy-MM-dd");
-                expense.title = balance.ToString();
-                expense.deposit = deposits;
-                expense.expense = expenses;
-                lstExpenses.Add(expense);
-            }            
-            return Json(data: lstExpenses );
         }
 
         [HttpPost]

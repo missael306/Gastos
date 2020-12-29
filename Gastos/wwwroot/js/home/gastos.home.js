@@ -15,8 +15,7 @@ Gastos.Home = (function () {
             chageTypeTrascation();
             validFormAddTransaction();
             validFormAddCategory();
-            selectIconCategory();
-            deploy();
+            selectIconCategory();            
         };
 
         //----------------------------------------------------- INDEX
@@ -42,7 +41,7 @@ Gastos.Home = (function () {
                     right: "addTransaction prev,next",
                 },
                 events: {
-                    url: `${Controller}/ExpensesDayDeploy`,
+                    url: `${Controller}/ExpensesDay`,
                     method: "POST"                    
                 },
                 eventClick: lstExpensesDetails,
@@ -153,17 +152,6 @@ Gastos.Home = (function () {
             };
             $("#tblExpensesDetails").DataTable(config);
         };
-
-        let deploy = function () {
-            console.log("deploy")
-            $.ajax({
-                method: "POST",
-                url: `${Controller}/ExpensesDayDeploy`
-            }).done(function (response) {
-                console.log(response)
-            });
-        }
-
         //----------------------------------------------------- MODAL TRANSACTION / CATEGORY
         let changeModalContet = function () {
             //Display the form Transaction or Category

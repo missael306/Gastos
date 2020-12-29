@@ -121,7 +121,7 @@ namespace Gastos.Business
                 expense.id = fecha.Day;
                 expense.start = fecha.ToString("yyyy-MM-dd");
                 expense.end = fecha.ToString("yyyy-MM-dd");
-                expense.title = balance.ToString();
+                expense.title = string.Format("{0:c}", balance);
                 if (balance > 0)
                     expense.backgroundColor = "green";
                 else if (balance < 0)
