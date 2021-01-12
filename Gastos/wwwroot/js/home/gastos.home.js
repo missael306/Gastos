@@ -53,7 +53,7 @@ Gastos.Home = (function () {
 
         let iniButtons = function () {
             //Sets mask on the inputs
-            $(".input-numeric").maskMoney();
+            $(".input-numeric").maskMoney({ prefix: "$", allowZero: false, thousands: ",", decimal: ".", precision : 2});
             $(".input-date").datepicker();
         };
 

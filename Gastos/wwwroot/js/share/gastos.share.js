@@ -47,7 +47,7 @@ Gastos.Share = (function() {
 
             //Set the format date in YYYY-MM-DD
             $(`#${idForm} .input-date`).each(function (index, item) {
-                $(item).val(moment($(item).datepicker("getDate")).format("YYYY-MM-DD"));
+                $(item).val($(item).val().split("/").reverse().join("-"));
             })
         }
 

@@ -29,7 +29,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="calActionDate" asp-for="ActionDate"></label>
-                <input asp-for="ActionDate" type="text" id="calActionDate" class="form-control input-date" value="@DateTime.Now.ToShortDateString()" disabled="disabled" />
+                <input asp-for="ActionDate" type="text" id="calActionDate" class="form-control input-date" value="@DateTime.Today.ToString("dd/MM/yyyy")" disabled="disabled" />
             </div>
         </div>
     </div>
